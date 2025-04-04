@@ -7,7 +7,7 @@ df = pd.read_csv('telefone.csv')
 st.title("CONSULTA DE TELEFONE")
 
 filtro = st.text_input("Cliente") #para filtrar os clientes
-df_filtro = df.cliente.str.contains(filtro) #pegando os dados ja filtrados
+df_filtro = df.cliente.str.contains(filtro.lower()) #pegando os dados ja filtrados
 
 df_dados = df.loc[df_filtro] #salvando os dados filtrados
 
