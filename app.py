@@ -3,11 +3,17 @@ import pandas as pd
 
 #tratando os dados para dentro do codigo
 df = pd.read_csv('telefone.csv')
-nome = df['cliente']
 
 st.title("CONSULTA DE TELEFONE")
 
-cliente = st.selectbox('',nome)
+filtro = st.text_input("Cliente") #para filtrar os clientes
+df_filtro = df.cliente.str.contains(filtro) #pegando os dados ja filtrados
+
+df_dados = df.loc[df_filtro] #salvando os dados filtrados
+
+nomes = df_dados['cliente'] #pegando apenas os nomes dos dados filtrados
+
+cliente = st.selectbox('',nomes)
 
 df_busca = df[df['cliente'] == cliente].copy()
 lista_id = list(df_busca['id'])
